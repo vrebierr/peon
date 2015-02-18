@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="peon">
+  <head>
+
+    <base href="/">
+
+    <title>peon</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <!-- build:css app.css -->
+      <!-- bower:css -->
+      <!-- endinject -->
+
+      <!-- inject:css -->
+      <link rel="stylesheet" href="styles/css/app.css">
+      <!-- endinject -->
+    <!-- endbuild -->
+
+  </head>
+  <body>
+
+    <strong>peon</strong>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="/">home</a>
+        </li>
+        <li ng-if="!Auth.isLogged()">
+          <a href="/signup">signup</a>
+        </li>
+        <li ng-if="!Auth.isLogged()">
+          <a href="/login">login</a>
+        </li>
+        <li ng-if="Auth.isLogged()">
+          <a href="" ng-click="Auth.logout()">logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <pre>logged in: {{ Auth.isLogged() }}</pre>
+
+    <div ui-view=""></div>
+
+    <!-- build:js app.js -->
+      <!-- bower:js -->
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/restangular/dist/restangular.js"></script>
+      <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+      <!-- endinject -->
+
+      <!-- inject:js -->
+      <script src="app.js"></script>
+      <script src="services/auth/auth.js"></script>
+      <script src="views/client/edit/edit.controller.js"></script>
+      <script src="views/client/client.controller.js"></script>
+      <script src="views/client/client.js"></script>
+      <script src="views/dashboard/dashboard.controller.js"></script>
+      <script src="views/dashboard/dashboard.js"></script>
+      <script src="views/home/home.controller.js"></script>
+      <script src="views/home/home.js"></script>
+      <script src="views/login/login.controller.js"></script>
+      <script src="views/login/login.js"></script>
+      <script src="views/settings/settings.controller.js"></script>
+      <script src="views/settings/settings.js"></script>
+      <script src="views/signup/jquery.center.min.js"></script>
+      <script src="views/signup/signup.controller.js"></script>
+      <script src="views/signup/signup.js"></script>
+      <!-- endinject -->
+    <!-- endbuild -->
+
+    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.list
+    button.bg-primary(ui-sref='client()') Ajouter un client
+    input#searchbar(type='text', ng-model='search', placeholder='Search...')
+
+    h3 Clients
+
+    ul
+        li(ng-repeat="client in filtered_clients = (clients | filter:search | orderBy:'isDeletable':true)")
+            a.link-box(ui-sref='client({ id: client._id })')
+                span.truncate {{client.name}}
+            span.icon.icon-times(ng-if='client.isDeletable == true', ng-click='delete(client); $event.stopPropagation();') delete
+
+    li(ng-hide='filtered_clients.length')
+        span.greycolor Aucun client
+
+.container
+    div(ui-view='')

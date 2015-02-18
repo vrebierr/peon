@@ -1,0 +1,13 @@
+.container
+    h3
+        span(class="icon icon-warning") {{ total_taxe }} € à déclarer avant le {{ next_taxe_date }}
+        a(class="button color-primary", href="#")
+
+    legend(class="pure-form-legend") Année {{current_year}}
+    
+    #chart
+
+    a(class="bg-primary", ng-click="prevYear()") Previous
+    a(class="bg-primary", ng-click="nextYear()") Next
+
+    .clearfix

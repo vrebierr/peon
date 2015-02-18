@@ -1,0 +1,122 @@
+.container
+    form(name='settingsForm', ng-submit='updateSettings()')
+        legend Export 
+
+        aside
+            a.pure-button.primary(to-export='', format='json', data='devis', filename='bdd') Base de donnee 
+            a.pure-button.primary(to-export='', format='vcard', data='clients', filename='clients') Base Clients vcard
+
+        legend Info perso
+
+        .control-group(ng-class="{ 'has-error' : settingsForm.name.$invalid && !settingsForm.name.$pristine }")
+            label Name 
+            span.greycolor * 
+            input.form-control(placeholder='Your Name', type='text', ng-model='settingsCpy.name', required='')
+
+        .control-group(ng-class="{ 'has-error' : settingsForm.commercial_id.$invalid && !settingsForm.commercial_id.$pristine }")
+            label Commercial id 
+            span.greycolor *
+
+        input.form-control(placeholder='Commercial id', ng-model='settingsCpy.commercial_id', required='')
+
+        .control-group
+            label Addresse
+            input(placeholder='Your Adress', ng-model='settingsCpy.adress')
+
+        .control-group
+            label Email
+            input(placeholder='Email', ng-model='settingsCpy.email')
+
+        legend Images 
+
+        .control-group(ng-class="{ 'has-error' : settingsForm.name.$invalid && !settingsForm.name.$pristine }")
+        label Logo
+        span.greycolor *
+
+        p.greycolor Image de 50 par 50 maximum
+
+        label Image
+        input.bg-primary(type='file', ng-file-select='', ng-file-change='onFileSelect($files)', accept='image/*')
+        //button(type='file', ng-model='settingsCpy.logo') Download
+
+        .control-group(ng-class="{ 'has-error' : settingsForm.name.$invalid && !settingsForm.name.$pristine }")
+            label Background 
+            span.greycolor *
+
+        p.greycolor Jpeg, 21 * 29.7 cm max
+
+        button.bg-primary(type='file', ng-model='settingsCpy.background') Download
+
+        #drop(width='150', height='150') COUCOU
+
+        canvas#canvas(width='200', height='200')
+
+        img(ng-src='{{src}}', imageonload='')
+
+        legend Reglages
+
+        .control-group(ng-class="{ 'has-error' : settingsForm.commercial_id.$invalid && !settingsForm.commercial_id.$pristine }")
+            label Taxe reccurence
+            span.greycolor *
+
+            input.form-control(placeholder='time between taxes', ng-model='settingsCpy.taxe_reccurence', required='')
+
+        .control-group(ng-class="{ 'has-error' : settingsForm.accompte.$invalid && !settingsForm.accompte.$pristine }")
+            label Accompte %
+            span.greycolor *
+
+        input(ng-model='settingsCpy.accompte', placeholder='accompte')
+
+        .pure-control-group(ng-class="{ 'has-error' : settingsForm.currency.$invalid && !settingsForm.currency.$pristine }")
+            label Currency 
+            span.greycolor *
+
+        select.form-control(placeholder='Choisir un client', ng-model='settingsCpy.currency', ng-options='type.id as type.value for type in currencies')
+
+        span.greycolor ( Changing currency do not affect any prices )
+
+        .control-group(ng-class="{ 'has-error' : settingsForm.taxe_percent.$invalid && !settingsForm.taxe_percent.$pristine }")
+            label Taxe percent 
+            span.greycolor *
+
+        input(ng-model='settingsCpy.taxe_percent', placeholder='Taxe percent')
+
+        span.greycolor ( Changing value do not affect any  previously validated facture )
+
+        legend Devis preset
+
+        div(ng-form='settingsForm.prestations', ng-repeat='p in settingsCpy.prestations')
+            div(ng-class="{ 'has-error' : settingsForm.name.$invalid && !settingsForm.name.$pristine }")
+                input(type='text', ng-model='p.name', placeholder='Prestation', required='')
+
+            div(ng-class="{ 'has-error' : settingsForm.quantity.$invalid && !settingsForm.quantity.$pristine }")
+                input(type='number', ng-model='p.quantity', placeholder='Quantity', required='')
+
+            div(ng-class="{ 'has-error' : settingsForm.price.$invalid && !settingsForm.price.$pristine }")
+                input(type='number', ng-model='p.price', placeholder='Price', required='')
+
+        input(type='checkbox', ng-model='p.isDefault')
+
+        span.icon.icon-times(ng-if='settings.prestations.length != 1', ng-click='deletePrestation(p)')
+
+        button.bg-primary(type='button', ng-click='addPrestation()')
+            span.fa.fa-plus Ajouter une prestation
+
+        div(ng-form='settingsForm.reductions', ng-repeat='r in settingsCpy.reductions')
+            div(ng-class="{ 'has-error' : settingsForm.name.$invalid && !settingsForm.name.$pristine }")
+                input(type='text', ng-model='r.name', placeholder='Reduction', required='')
+
+        div(ng-class="{ 'has-error' : settingsForm.price.$invalid && !settingsForm.price.$pristine }")
+            input(ng-model='r.price', type='number', placeholder='Price', required='')
+
+        select(placeholder='Choisir un client', ng-model='r.type', ng-options='type.id as type.value for type in types')
+
+        input(type='checkbox', ng-model='r.isDefault')
+
+        span.fa.fa-times.bigger(ng-if='settingsCpy.reductions.length >= 1', ng-click='deleteReduction(r)')
+
+        button.secondary.pure-button(type='button', ng-click='addReduction()')
+            span.fa.fa-plus Ajouter une reduction
+
+        button.primary.pure-button(type='submit', ng-disabled='settingsForm.$invalid')
+            span.fa.fa-save Enregistrer

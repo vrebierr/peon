@@ -1,0 +1,102 @@
+.screen-box
+    div.box.fade-in-next
+        .container
+            .row
+                .col-8.push-2.alpha.omega
+                    .col-6
+                        .logo.pull-right
+                    .col-6
+                        h1.text-white Bienvenue.
+                        button Démarrer l'installation
+                        .clearfix.add-bot
+                        i.fa.fa-info-circle.pull-left.text-primary-dark
+                        p Je ne stoque vos données que sur votre ordinateur. Aucune information n’est ou ne sera transmise à aucuns moments.
+    div.box.removed
+        .container
+            .row
+                .col-6.push-3
+                    h3.text-white.add-bot Pour commencer, <br> quel est le nom de votre entreprise ? 
+                    input( type="text", form-isValid="false", placeholder="ou votre nom et prénom...", ng-model="user.name", required)
+                    button.button-large.disabled ok
+                    .clearfix.add-bot
+                    i.fa.fa-info-circle.pull-left.text-primary-dark
+                    p Cette information sera modifiable par la suite.
+                    div.error
+                        i.fa.fa-exclamation-circle.pull-left.text-primary-dark
+                        p Minimum de 3 carracteres.
+    div.box.removed
+        .container
+            .row
+                .col-6.push-3
+                    h3.text-white.add-bot  Il me faut également votre adresse
+                    input(type="email", form-isValid="false", placeholder="ou celle de vos locaux...", ng-model="user.address")
+                    button.button-large.disabled ok
+                    .clearfix.add-bot
+                    i.fa.fa-info-circle.pull-left.text-primary-dark
+                    p Cette information sera modifiable par la suite.
+                    div.error
+                        i.fa.fa-exclamation-circle.pull-left.text-primary-dark
+                        p example@test.fr
+    div.box.removed
+        .container
+            .row
+                .col-6.push-3
+                    h3.text-white.add-bot  Votre identifiant commercial
+                    input(type="text", form-isValid="false", placeholder="SIRET...", ng-model="user.commercialId")
+                    button.button-large.disabled ok 
+                    .clearfix.add-bot
+                    i.fa.fa-info-circle.pull-left.text-primary-dark
+                    p Cette information sera modifiable par la suite.
+    div.box.removed
+        .container
+            .row
+                .col-8.push-2
+                    .col-6.alpha.omega
+                        h3.text-white Plafond annuel
+                        p.small.text-white 32000€ en auto-entrepreneur service
+                        input(type="text", form-isValid="false", placeholder="72000 en produit...", ng-model="user.plafond")
+                    .col-6.alpha.omega
+                        h3.text-white Récurence des impots
+                        p.small.text-white Paiement libératoire tous les trois mois
+                        select(ng-model="user.impots_r.id", ng-selected="0", ng-options="version.id as version.description for version in selectImpots")
+                    .clearfix.add-bot
+                    .col-8.alpha.omega
+                        button.add-top.disabled Suivant
+                        .clearfix.add-bot
+                        i.fa.fa-info-circle.pull-left.text-primary-dark
+                        p Cette information sera modifiable par la suite.
+    div.box.removed
+        .container
+            .row
+                .col-8.push-2
+                    .col-6.alpha.omega
+                        h3.text-white.add-bot  Identifiant numérique
+                        p.small.text-white Combien de factures depuis le début de votre activité
+                        input(type="text", form-isValid="false", placeholder="Numéro...", ng-model="user.factureId")
+                    .col-6.alpha.omega
+                        h3.text-white.add-bot Type de umérotation
+                        input(type="checkbox", form-isValid="true", class="pull-left" checked)
+                        h4.text-white Automatique
+                        p.small.text-white.checkboxed Conseillé pour les nouveaux auto entrepreneurs
+                        div.clearfix.add-bottom
+                        input(type="checkbox", form-isValid="true", class="pull-left")
+                        h4.text-white Manuelle
+                        p.small.text-white.checkboxed Conseillé pour les nouveaux auto entrepreneurs
+                    .clearfix.add-bottom
+                    .col-8.alpha.omega
+                        button.add-top.disabled Et voilà.
+                        .clearfix.add-bot
+                        i.fa.fa-info-circle.pull-left.text-primary-dark
+                        p Modifiable avec précautions :)
+    div.box.removed
+        .container
+            .row
+                .col-6.push-3
+                    h1.text-white Let's begin ! 
+                    button(ui-sref='dashboard()') Lancer l'application
+
+.step
+    h3.text-primary-dark.form-step 
+
+.progress-bar-container
+    .progress-bar

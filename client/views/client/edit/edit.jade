@@ -1,0 +1,56 @@
+form(name='formClient', ng-submit='send()', novalidate='')
+    .control-group
+        button(type='submit', ng-disabled='formClient.$invalid') Submit
+
+    a(to-export='', format='vcard', data='client', filename='client') Export {{ client.name }}
+
+    .control-group(ng-class="{ 'has-error' : formClient.name.$invalid && !formClient.name.$pristine }")
+        label Nom 
+        span.greycolor *
+
+        input(name='name', type='text', ng-minlength='3', ng-model='client.name', placeholder='Name', required='required')
+        span.help-block(ng-show='formClient.name.$error.minlength') Username is too short.
+
+    .control-group(ng-class="{ 'has-error' : formClient.email.$invalid && !formClient.email.$pristine }")
+        label Email 
+        span.greycolor *
+
+        input(name='email', type='email', ng-model='client.email', placeholder='Email', required='required')
+        span.help-block(ng-show='formClient.email.$invalid && !formClient.email.$pristine') Your email is required.
+
+
+    .control-group(ng-class="{ 'has-error' : formClient.adress.$invalid && !formClient.adress.$pristine }")
+        label Adresse 
+        span.greycolor *
+
+        input(name='adress', type='text', ng-model='client.address', placeholder='Adresse', required='required')
+        span.help-block(ng-show='formClient.adress.$invalid && !formClient.adress.$pristine') Your adress is required.
+
+    .control-group(ng-class="{ 'has-error' : formClient.commercial_id.$invalid && !formClient.commercial_id.$pristine }")
+        label Id commercial
+
+        input(name='commercial_id', type='text', ng-model='client.commercialId', placeholder='Commercial_id')
+
+    .control-group
+        label Phone
+
+        input(name='phone', type='text', ng-model='client.phone', placeholder='phone')
+
+    .control-group
+        label Activity
+
+        input(name='activity', type='text', ng-model='client.activity', placeholder='activity')
+
+    .control-group
+        label Commentary
+
+        textarea(name='commentary', type='text', ng-model='client.commentary', placeholder='commentary')
+
+    div(ng-if='client_factures.length')
+        legend Factures associees
+
+        ul(ng-repeat='bill in bills')
+            a.grey.link-box(ui-sref='root.private.facture.details({ id: bill.id })') {{bill.title}} 
+                span.floatr {{bill.total}}
+
+        b {{total}}
